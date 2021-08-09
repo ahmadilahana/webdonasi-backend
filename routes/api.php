@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group([
+ 'namespace' => 'App\Http\Controllers',
+], function(){
+    Route::post('register', 'UserController@register');
+    Route::post('login', 'UserController@login');
+    Route::get('book', 'BookController@book');
 
-//  Login untuk user
-Route::post('/login', 'userController@login');
+    Route::get('bookall', 'BookController@bookAuth')->middleware('jwt.verify');
+    Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
+});
