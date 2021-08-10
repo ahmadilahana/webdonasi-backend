@@ -17,13 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group([
- 'namespace' => 'App\Http\Controllers',
-], function(){
-    Route::post('register', 'UserController@register');
+Route::group(['middleware' => ['jwt.verify']], function(){
+    //Super Admin
     Route::post('login', 'UserController@login');
-    Route::get('book', 'BookController@book');
 
-    Route::get('bookall', 'BookController@bookAuth')->middleware('jwt.verify');
-    Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
+    //Donatur
+    Route::post('/donatur', 'DonaturController@store');
+    Route::post('/donatur/{id}', 'DonaturController@update');
+    Route::delete('donatur/{id}', 'DonaturController@destroy');
 });
