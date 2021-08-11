@@ -73,4 +73,8 @@ class UserController extends Controller
 
         return response()->json(compact('user'));
     }
+
+    public function logou(){
+        Auth::logout();
+    }
 }
