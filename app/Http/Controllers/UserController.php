@@ -77,30 +77,20 @@ class UserController extends Controller
     }
 
     public function logout(){
-        $cookie = Cookie::forget('jwt');
+        $logout = auth()->invalidate(JWTAuth::getToken());
 
         return response([
             'message' => 'Success'
-        ])->withCookie($cookie);
+        ]);
     }
     public function token()
     {
-        try {
-            $user = JWTAuth::parseToken()->authenticate();
+            $user = JWTAuth::getToken();
+            dd($user);
             if (!$user) {
-                return response()->json(['message', 'Akun tidak ditemukan']);
+                return response()->json(['message', 'invalidate']);
             } else {
                 return response()->json(['success','Success']);
             }
-
-        } catch (Exception $e) {
-            if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                return response()->json(['status' => 'Token is Invalid']);
-            }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                return response()->json(['status' => 'Token is Expired']);
-            }else{
-                return response()->json(['status' => 'Authorization Token not found']);
-            }
-        }
     }
 }
