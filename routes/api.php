@@ -23,6 +23,7 @@ Route::group([
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
     Route::post('/logout', 'UserController@logout');
+    Route::get('/checkToken', 'UserController@checkToken');
     // Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
 
     //Donatur
