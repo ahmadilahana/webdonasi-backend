@@ -83,10 +83,16 @@ class UserController extends Controller
             'message' => 'Success'
         ])->withCookie($cookie);
     }
-    public function checkToken($request)
+    public function token()
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
+            if (!$user) {
+                return response()->json(['message', 'Akun tidak ditemukan']);
+            } else {
+                return response()->json(['success','Success']);
+            }
+
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
                 return response()->json(['status' => 'Token is Invalid']);
@@ -96,6 +102,5 @@ class UserController extends Controller
                 return response()->json(['status' => 'Authorization Token not found']);
             }
         }
-        return response()->json(['status' => 'success']);
     }
 }
