@@ -86,7 +86,7 @@ class UserController extends Controller
     public function token()
     {
             $user = JWTAuth::getToken();
-            dd($user);
+            // dd($user);
             if (!$user) {
                 return response()->json(['message', 'invalidate']);
             } else {
