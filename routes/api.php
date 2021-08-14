@@ -23,13 +23,13 @@ Route::group([
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
     Route::post('/logout', 'UserController@logout');
-    Route::get('/checkToken', 'UserController@token')->middleware('jwt.verify');
-    // Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
+    Route::get('/checkToken', 'UserController@token');
+    // Route::get('user', 'UserController@getAuthenticatedUser');
 
     //Donatur
-    Route::get('/donatur', 'DonaturController@index')->middleware('jwt.verify');
-    Route::get('/donatur/{id}', 'DonaturController@get')->middleware('jwt.verify');
-    Route::post('/donatur', 'DonaturController@store')->middleware('jwt.verify');
-    Route::post('/donatur/{id}', 'DonaturController@update')->middleware('jwt.verify');
-    Route::post('/donatur/{id}/delete', 'DonaturController@destroy')->middleware('jwt.verify');
+    Route::get('/donatur', 'DonaturController@index');
+    Route::get('/donatur/{id}', 'DonaturController@get');
+    Route::post('/donatur', 'DonaturController@store');
+    Route::post('/donatur/{id}', 'DonaturController@update');
+    Route::post('/donatur/{id}/delete', 'DonaturController@destroy');
 });
