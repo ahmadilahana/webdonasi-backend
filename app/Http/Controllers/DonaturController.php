@@ -34,7 +34,7 @@ class DonaturController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'          => 'required|string',
-            'date'            => 'required|integer',
+            'date'            => 'required|string',
             'nominal'      => 'required|integer',
             'address'       => 'required|string',
         ]);
