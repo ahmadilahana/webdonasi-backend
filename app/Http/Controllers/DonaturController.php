@@ -10,7 +10,7 @@ class DonaturController extends Controller
 {
     public function index()
     {
-        $donatur = Donatur::all();
+        $donatur = Donatur::orderBy('id', 'DESC')->get();
 
         if ($donatur->isEmpty()) {
             return $this->sendResponse('error', 'Data Tidak Ada', null, 404);
