@@ -63,10 +63,10 @@ class DonaturController extends Controller
         };
 
         $validator = Validator::make($request->all(),[
-            'name'       => 'string',
-            'date'         => 'integer',
-            'nominal'   => 'integer',
-            'address'    => 'string',
+            'name'          => 'required|string',
+            'date'            => 'required|string',
+            'nominal'      => 'required|integer',
+            'address'       => 'required|string',
         ]);
 
         if($validator->fails()){
